@@ -43,7 +43,7 @@ char* add_set_number_str(char* pStr, int number)
 }
 
 
-char* toString(SetPtr set)
+char* printSet(SetPtr set)
 {
     int byteIndex, bitIndex, countLineElements = 0;
     unsigned char* currByte;
@@ -59,7 +59,7 @@ char* toString(SetPtr set)
             if(*currByte & (1 << bitIndex)){
 
                 countLineElements++;
-                if(countLineElements == MAX_VALUE_IN_LINE)
+                if(countLineElements % MAX_VALUE_IN_LINE == 0)
                     *(currChar-1) = NEW_LINE;
 
                 currChar = add_set_number_str(currChar, byteIndex * BYTE_SIZE + bitIndex);
@@ -104,10 +104,8 @@ void unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 
     initSet(outputSet);
 
-    for (byteIndex = 0; byteIndex < ARRAY_DATA_SIZE; byteIndex++) {
-
+    for (byteIndex = 0; byteIndex < ARRAY_DATA_SIZE; byteIndex++)
         outputSet->setData[byteIndex] = setA->setData[byteIndex] | setB->setData[byteIndex];
-    }
 }
 
 
@@ -117,12 +115,30 @@ void intersectSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 
     initSet(outputSet);
 
-    for (byteIndex = 0; byteIndex < ARRAY_DATA_SIZE; byteIndex++) {
-
+    for (byteIndex = 0; byteIndex < ARRAY_DATA_SIZE; byteIndex++)
         outputSet->setData[byteIndex] = setA->setData[byteIndex] & setB->setData[byteIndex];
-    }
 }
 
-void subSet(SetPtr originalSet, SetPtr subSet, SetPtr outputSet);
-void symDiffSet(SetPtr setA, SetPtr setB, SetPtr outputSet);
+void subSet(SetPtr originalSet, SetPtr subSet, SetPtr outputSet)
+{
+    int byteIndex;
+
+    initSet(outputSet);
+
+    for (byteIndex = 0; byteIndex < ARRAY_DATA_SIZE; byteIndex++)
+        outputSet->setData[byteIndex] = originalSet->setData[byteIndex] & ~subSet->setData[byteIndex];
+
+}
+
+void symDiffSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
+{
+    Set unionSetResult, intersectSetResult;
+
+    initSet(outputSet);
+
+    unionSet(setA, setB, &unionSetResult);
+    intersectSet(setA, setB, &intersectSetResult);
+
+    subSet(&unionSetResult, &intersectSetResult, outputSet);
+}
 

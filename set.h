@@ -22,7 +22,7 @@ typedef struct set
 
 /* Function Headers */
 void initSet(SetPtr set);
-char* toString(SetPtr set);
+char* printSet(SetPtr set);
 void readSet(SetPtr set, int* numbers);
 void unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet);
 void intersectSet(SetPtr setA, SetPtr setB, SetPtr outputSet);
