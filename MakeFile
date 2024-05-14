@@ -1,9 +1,9 @@
 CC = gcc
 CFLAGS = -Wall -pedantic -std=c90
 LDFLAGS = -lm
-SRC = myset.c set.c
+SRC = set.c Errors.c myset.c
 OBJ = $(SRC:.c=.o)
-EXEC = mycomp
+EXEC = myset
 
 all: $(EXEC)
 
