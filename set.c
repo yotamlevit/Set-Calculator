@@ -17,7 +17,7 @@
 #define EOL '\0'
 
 
-void initSet(SetPtr set)
+void* initSet(SetPtr set)
 {
     unsigned char mask = {0};
     int i;
@@ -82,7 +82,7 @@ char* printSet(SetPtr set)
 }
 
 
-void readSet(SetPtr set, int* numbers)
+void* readSet(SetPtr set, int* numbers)
 {
     int byteIndex, bitIndex;
 
@@ -98,7 +98,7 @@ void readSet(SetPtr set, int* numbers)
 }
 
 
-void unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
+void* unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 {
     int byteIndex;
 
@@ -109,7 +109,7 @@ void unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 }
 
 
-void intersectSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
+void* intersectSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 {
     int byteIndex;
 
@@ -119,7 +119,7 @@ void intersectSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
         outputSet->setData[byteIndex] = setA->setData[byteIndex] & setB->setData[byteIndex];
 }
 
-void subSet(SetPtr originalSet, SetPtr subSet, SetPtr outputSet)
+void* subSet(SetPtr originalSet, SetPtr subSet, SetPtr outputSet)
 {
     int byteIndex;
 
@@ -130,7 +130,7 @@ void subSet(SetPtr originalSet, SetPtr subSet, SetPtr outputSet)
 
 }
 
-void symDiffSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
+void* symDiffSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 {
     Set unionSetResult, intersectSetResult;
 

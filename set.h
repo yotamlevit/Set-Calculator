@@ -21,13 +21,13 @@ typedef struct set
 
 
 /* Function Headers */
-void initSet(SetPtr set);
+void* initSet(SetPtr set);
 char* printSet(SetPtr set);
-void readSet(SetPtr set, int* numbers);
-void unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet);
-void intersectSet(SetPtr setA, SetPtr setB, SetPtr outputSet);
-void subSet(SetPtr originalSet, SetPtr subSet, SetPtr outputSet);
-void symDiffSet(SetPtr setA, SetPtr setB, SetPtr outputSet);
+void* readSet(SetPtr set, int* numbers);
+void* unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet);
+void* intersectSet(SetPtr setA, SetPtr setB, SetPtr outputSet);
+void* subSet(SetPtr originalSet, SetPtr subSet, SetPtr outputSet);
+void* symDiffSet(SetPtr setA, SetPtr setB, SetPtr outputSet);
 
 
 
