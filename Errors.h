@@ -8,6 +8,8 @@
 
 #define MAX_ERROR_LEN 1000
 
+typedef enum {FALSE = 0, TRUE} boolean;
+
 typedef enum {
     undefinedSetNameError,
     undefinedCommandNameError,
@@ -25,5 +27,6 @@ typedef struct {
 
 
 ErrorPtr getError(ErrorCode errorCode);
+void printError(ErrorCode errorCode);
 
 #endif /*C_ALGORITHEMS_ERRORS_H*/

@@ -2,6 +2,8 @@
 // Created by Yotam Levit on 26/04/2024.
 //
 
+#include <stdio.h>
+
 #include "Errors.h"
 
 ErrorPtr getErrors()
@@ -23,4 +25,9 @@ ErrorPtr getError(ErrorCode errorCode)
 {
     ErrorPtr errors = getErrors();
     return &errors[errorCode];
+}
+
+void printError(ErrorCode errorCode)
+{
+    printf("%s\n", getErrors(errorCode)->error_msg);
 }
