@@ -4,6 +4,7 @@
 
 #include "CommandFactory.h"
 #include "set.h"
+#include "Errors.h"
 
 
 CommandRegistryPtr getCommandRegistry()
@@ -33,6 +34,8 @@ FunctionPointer getCommand(char* command)
             return commandMap[i].commandFunction;  // Call the function
         }
     }
-    printf("Invalid function ID: %s\n", command);  // No match found
+    printError(undefinedCommandNameError);
+    //printf("Invalid function ID: %s\n", command);  // No match found
+    return NULL;
 }
 
