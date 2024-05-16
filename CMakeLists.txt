@@ -14,4 +14,5 @@ add_executable(MMN22
         set.c
         set.h
         set.c
+        CommandFactory.c
 )
