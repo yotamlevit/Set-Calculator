@@ -14,6 +14,16 @@
 #define DOUBLE_DIGIT_NUMBERS MAX_NUMBER - SINGLE_DIGIT_NUMBERS - (MAX_NUMBER - 100) //90
 #define TRIPLE_DIGIT_NUMBER MAX_NUMBER - 99
 
+typedef enum {
+    SETA,
+    SETB,
+    SETC,
+    SETD,
+    SETE,
+    SETF,
+    NumberOfSets
+} Sets;
+
 typedef struct set
 {
     unsigned char setData[ARRAY_DATA_SIZE];
