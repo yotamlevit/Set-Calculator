@@ -17,6 +17,7 @@ typedef enum {
     missingEndOfListError,
     typeError,
     missingParamError,
+    missingCommand,
     NumberOfErrors
 } ErrorCode;
 
