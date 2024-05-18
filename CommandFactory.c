@@ -35,7 +35,7 @@ int getCommand(FunctionPointer commandFunction, char* command)
             return TRUE;
         }
     }
-
+    commandFunction = NULL;
     return undefinedCommandNameError;
 }
 
