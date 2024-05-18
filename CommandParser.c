@@ -13,13 +13,11 @@ int parseUserCommand(UserCommandPtr commandDTO, char* command)
     char* token;
 
     if(command == NULL || strlen(command) == 0)
-        //printError(missingCommand);
         return missingCommand;
 
     token = strtok(command, " ");
     commandDTO->command = strdup(token);
 
-    //commandDTO->arguments = malloc(space * sizeof(char*));
     commandDTO->argCount = 0;
 
     while ((token = strtok(NULL, ", ")) != NULL)
