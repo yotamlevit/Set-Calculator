@@ -24,18 +24,18 @@ CommandRegistryPtr getCommandRegistry()
 }
 
 
-FunctionPointer getCommand(char* command)
+int getCommand(FunctionPointer commandFunction, char* command)
 {
     CommandRegistryPtr commandRegistry = getCommandRegistry();
     CommandMapPtr commandMap = commandRegistry->commandMap;
 
     for (int i = 0; i < commandRegistry->numberOfCommands; i++) {
         if (strcmp(commandMap[i].command, command) == 0) {  // Compare string IDs
-            return commandMap[i].commandFunction;  // Call the function
+            commandFunction = commandMap[i].commandFunction;
+            return TRUE;
         }
     }
-    printError(undefinedCommandNameError);
-    //printf("Invalid function ID: %s\n", command);  // No match found
-    return NULL;
+
+    return undefinedCommandNameError;
 }
 

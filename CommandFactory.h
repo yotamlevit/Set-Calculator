@@ -25,7 +25,7 @@ typedef struct {
 
 
 CommandRegistryPtr getCommandRegistry();
-FunctionPointer getCommand(char* inputCommand);
+int getCommand(FunctionPointer commandFunction, char* command)
 
 
 
