@@ -5,24 +5,27 @@
 #ifndef MMN22_USERCOMMANDDTO_H
 #define MMN22_USERCOMMANDDTO_H
 
-#include "strings.h"
+#include <strings.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "set.h"
+#include "Errors.h"
 
 typedef struct UserCommand
 {
     char* command;
     SetPtr * sets;
     int setsCount;
-    char* args;
+    char** arguments;
     int argCount;
 
 } UserCommand, * UserCommandPtr;
 
 
-void parseUserCommand(UserCommandPtr commandDTO, char* command)
-{
+int parseUserCommand(UserCommandPtr commandDTO, char* command);
 
-}
+
+void freeUserCommand(UserCommandPtr cmd);
 
 #endif //MMN22_USERCOMMANDDTO_H
