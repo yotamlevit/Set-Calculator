@@ -5,10 +5,6 @@
 #ifndef MMN22_USERCOMMANDDTO_H
 #define MMN22_USERCOMMANDDTO_H
 
-#include <strings.h>
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "set.h"
 #include "Errors.h"
 
