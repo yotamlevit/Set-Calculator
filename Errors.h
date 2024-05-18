@@ -11,13 +11,14 @@
 typedef enum {FALSE = 0, TRUE} boolean;
 
 typedef enum {
-    undefinedSetNameError,
+    undefinedSetNameError = 2,
     undefinedCommandNameError,
     valueError,
     missingEndOfListError,
     typeError,
     missingParamError,
     missingCommand,
+    troubleParsingCommandArguments,
     NumberOfErrors
 } ErrorCode;
 
