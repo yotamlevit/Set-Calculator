@@ -31,16 +31,12 @@ typedef struct set
 
 
 /* Function Headers */
-void* initSet(SetPtr set);
-char* printSet(SetPtr set);
-void* readSet(SetPtr set, int* numbers);
-void* unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet);
-void* intersectSet(SetPtr setA, SetPtr setB, SetPtr outputSet);
-void* subSet(SetPtr originalSet, SetPtr subSet, SetPtr outputSet);
-void* symDiffSet(SetPtr setA, SetPtr setB, SetPtr outputSet);
-
-
-
-void addNumber(Set* set, int num);
+int initSet(SetPtr set);
+int printSet(SetPtr set, char* setStr);
+int readSet(SetPtr set, int* numbers);
+int unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet);
+int intersectSet(SetPtr setA, SetPtr setB, SetPtr outputSet);
+int subSet(SetPtr originalSet, SetPtr subSet, SetPtr outputSet);
+int symDiffSet(SetPtr setA, SetPtr setB, SetPtr outputSet);
 
 #endif /* C_ALGORITHEMS_SET_H */

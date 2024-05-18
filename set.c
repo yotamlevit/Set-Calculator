@@ -2,10 +2,11 @@
   Created by Yotam Levit on 25/04/2024.
 */
 
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "set.h"
+#include "Errors.h"
 
 #define CAST_ASCII_NUMBER(number)  (number + '0')
 #define MAX_VALUE_IN_LINE 16
@@ -17,7 +18,7 @@
 #define EOL '\0'
 
 
-void* initSet(SetPtr set)
+int initSet(SetPtr set)
 {
     unsigned char mask = {0};
     int i;
@@ -25,6 +26,8 @@ void* initSet(SetPtr set)
     for (i = 0; i < ARRAY_DATA_SIZE; ++i) {
         set->setData[i] = mask;
     }
+
+    return TRUE;
 }
 
 char* add_set_number_str(char* pStr, int number)
@@ -43,7 +46,7 @@ char* add_set_number_str(char* pStr, int number)
 }
 
 
-char* printSet(SetPtr set)
+int printSet(SetPtr set, char* setStr)
 {
     int byteIndex, bitIndex, countLineElements = 0;
     unsigned char* currByte;
@@ -75,14 +78,11 @@ char* printSet(SetPtr set)
     *currChar++ = ')';
     *currChar++ = EOL;
 
-    //printf("The set values is: \n%s\n", binaryStr);
-
-
-    return binaryStr;
+    return TRUE;
 }
 
 
-void* readSet(SetPtr set, int* numbers)
+int readSet(SetPtr set, int* numbers)
 {
     int byteIndex, bitIndex;
 
@@ -95,10 +95,12 @@ void* readSet(SetPtr set, int* numbers)
 
         numbers++;
     }
+
+    return TRUE;
 }
 
 
-void* unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
+int unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 {
     int byteIndex;
 
@@ -106,10 +108,12 @@ void* unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 
     for (byteIndex = 0; byteIndex < ARRAY_DATA_SIZE; byteIndex++)
         outputSet->setData[byteIndex] = setA->setData[byteIndex] | setB->setData[byteIndex];
+
+    return TRUE;
 }
 
 
-void* intersectSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
+int intersectSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 {
     int byteIndex;
 
@@ -117,9 +121,12 @@ void* intersectSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 
     for (byteIndex = 0; byteIndex < ARRAY_DATA_SIZE; byteIndex++)
         outputSet->setData[byteIndex] = setA->setData[byteIndex] & setB->setData[byteIndex];
+
+    return TRUE;
 }
 
-void* subSet(SetPtr originalSet, SetPtr subSet, SetPtr outputSet)
+
+int subSet(SetPtr originalSet, SetPtr subSet, SetPtr outputSet)
 {
     int byteIndex;
 
@@ -128,9 +135,10 @@ void* subSet(SetPtr originalSet, SetPtr subSet, SetPtr outputSet)
     for (byteIndex = 0; byteIndex < ARRAY_DATA_SIZE; byteIndex++)
         outputSet->setData[byteIndex] = originalSet->setData[byteIndex] & ~subSet->setData[byteIndex];
 
+    return TRUE;
 }
 
-void* symDiffSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
+int symDiffSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 {
     Set unionSetResult, intersectSetResult;
 
@@ -140,5 +148,7 @@ void* symDiffSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
     intersectSet(setA, setB, &intersectSetResult);
 
     subSet(&unionSetResult, &intersectSetResult, outputSet);
+
+    return TRUE;
 }
 
