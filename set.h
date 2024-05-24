@@ -31,7 +31,7 @@ typedef struct set
 
 
 /* Function Headers */
-int initSet(SetPtr set);
+SetPtr initSet();
 int printSet(SetPtr set, char* setStr);
 int readSet(SetPtr set, int* numbers);
 int unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet);

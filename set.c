@@ -18,8 +18,13 @@
 #define EOL '\0'
 
 
-int initSet(SetPtr set)
+SetPtr initSet()
 {
+    SetPtr set = (SetPtr)malloc(sizeof(Set));
+
+    if(!set)
+        return NULL;
+
     unsigned char mask = {0};
     int i;
 
@@ -27,7 +32,7 @@ int initSet(SetPtr set)
         set->setData[i] = mask;
     }
 
-    return TRUE;
+    return set;
 }
 
 char* add_set_number_str(char* pStr, int number)
@@ -50,8 +55,8 @@ int printSet(SetPtr set, char* setStr)
 {
     int byteIndex, bitIndex, countLineElements = 0;
     unsigned char* currByte;
-    char* binaryStr = (char* )malloc(sizeof(char) * MAX_SET_STRING_LEN);
-    char* currChar = binaryStr;
+    setStr = (char* )malloc(sizeof(char) * MAX_SET_STRING_LEN);
+    char* currChar = setStr;
 
     *currChar++ = '(';
 
