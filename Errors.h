@@ -19,6 +19,11 @@ typedef enum {
     missingParamError,
     missingCommand,
     troubleParsingCommandArguments,
+    troubleParsingCommandSETS,
+    tooManySets,
+    extraTextAfterCommand,
+    troubleInitCommands,
+    troubleInitSet,
     NumberOfErrors
 } ErrorCode;
 
