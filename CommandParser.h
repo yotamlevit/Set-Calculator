@@ -7,6 +7,7 @@
 
 #include "set.h"
 #include "Errors.h"
+#include "HashMap.h"
 
 typedef struct UserCommand
 {
@@ -19,7 +20,7 @@ typedef struct UserCommand
 } UserCommand, * UserCommandPtr;
 
 
-int parseUserCommand(UserCommandPtr commandDTO, char* command);
+int parseUserCommand(UserCommandPtr commandDTO, char* command, HashMapPtr setMap);
 
 
 void freeUserCommand(UserCommandPtr cmd);
