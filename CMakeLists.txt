@@ -14,7 +14,7 @@ add_executable(MMN22
         set.c
         set.h
         set.c
-        CommandFactory.c
+        CommandDispatcher.c
         CommandParser.c
         HashMap.c
         HashMap.h

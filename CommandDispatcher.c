@@ -4,7 +4,7 @@
 
 #include "stdlib.h"
 
-#include "CommandDispacher.h"
+#include "CommandDispatcher.h"
 #include "set.h"
 #include "Errors.h"
 #include "CommandParser.h"

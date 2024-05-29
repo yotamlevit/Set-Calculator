@@ -2,8 +2,8 @@
 // Created by Yotam Levit on 14/05/2024.
 //
 
-#ifndef MMN22_COMMANDDISPACHER_H
-#define MMN22_COMMANDDISPACHER_H
+#ifndef MMN22_COMMANDDISPATCHER_H
+#define MMN22_COMMANDDISPATCHER_H
 
 
 #include <stdio.h>
@@ -72,4 +72,4 @@ int runCommand(HashMapPtr commandMap, UserCommandPtr command);
 
 
 
-#endif //MMN22_COMMANDDISPACHER_H
+#endif //MMN22_COMMANDDISPATCHER_H
