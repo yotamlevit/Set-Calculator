@@ -15,6 +15,7 @@ ErrorPtr getErrors()
             {missingEndOfListError, "List of set members is not terminated correctly"},
             {typeError, "Invalid set member – not an integer"},
             {missingParamError, "Missing parameter"},
+            {missingCommand, "Missing command"},
             {troubleParsingCommandArguments, "There was a problem parsing command arguments"},
             {troubleParsingCommandSETS, "There was a problem parsing command sets"},
             {tooManySets, "Too many sets in command"},
@@ -25,7 +26,6 @@ ErrorPtr getErrors()
 
     return Errors;
 }
-
 
 ErrorPtr getError(ErrorCode errorCode)
 {
