@@ -32,6 +32,7 @@ void resetUserCommand(UserCommandPtr commandDTO)
 int parseUserCommand(UserCommandPtr commandDTO, char* command, HashMapPtr setMap)
 {
     char* token;
+    SetPtr set;
 
     if(command == NULL || strlen(command) == 0)
         return missingCommand;
@@ -44,7 +45,13 @@ int parseUserCommand(UserCommandPtr commandDTO, char* command, HashMapPtr setMap
     while ((token = strtok(NULL, ", ")) != NULL)
     {
         if (IS_ARGUMENT_SET(token))
-            commandDTO->sets[commandDTO->setsCount++] = hashMapFind(setMap, token);
+        {
+            set = hashMapFind(setMap, token);
+            if(set)
+                commandDTO->sets[commandDTO->setsCount++] = set;
+            else
+                return undefinedSetNameError;
+        }
         else
         {
             commandDTO->arguments = realloc(commandDTO->arguments, ++commandDTO->argCount * sizeof(char*));
