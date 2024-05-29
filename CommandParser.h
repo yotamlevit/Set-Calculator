@@ -9,19 +9,21 @@
 #include "Errors.h"
 #include "HashMap.h"
 
+#define MAX_COMMAND_SETS
+
 typedef struct UserCommand
 {
     char* command;
-    SetPtr * sets;
-    int setsCount;
     char** arguments;
     int argCount;
-
+    int setsCount;
+    SetPtr sets[MAX_COMMAND_SETS];
 } UserCommand, * UserCommandPtr;
 
 
+void initUserCommand(UserCommandPtr commandDTO);
 int parseUserCommand(UserCommandPtr commandDTO, char* command, HashMapPtr setMap);
-
+void resetUserCommand(UserCommandPtr commandDTO);
 
 void freeUserCommand(UserCommandPtr cmd);
 

@@ -10,6 +10,25 @@
 #define IS_ARGUMENT_SET(argument) strstr(argument, "SET") != NULL
 
 
+void initUserCommand(UserCommandPtr commandDTO)
+{
+    commandDTO->arguments = NULL;
+    commandDTO->argCount = 0;
+    commandDTO->command = NULL;
+    commandDTO->setsCount = 0;
+}
+
+void resetUserCommand(UserCommandPtr commandDTO)
+{
+    free(commandDTO->command);
+    commandDTO->setsCount = 0;
+
+    for (int i = 0; i < commandDTO->argCount; ++i) {
+        free(commandDTO->arguments[i]);
+    }
+    commandDTO->argCount = 0;
+}
+
 int parseUserCommand(UserCommandPtr commandDTO, char* command, HashMapPtr setMap)
 {
     char* token;
@@ -17,31 +36,24 @@ int parseUserCommand(UserCommandPtr commandDTO, char* command, HashMapPtr setMap
     if(command == NULL || strlen(command) == 0)
         return missingCommand;
 
+    resetUserCommand(commandDTO);
+
     token = strtok(command, " ");
     commandDTO->command = strdup(token);
-
-    commandDTO->setsCount = 0;
-    commandDTO->sets = NULL;
-    commandDTO->argCount = 0;
-    commandDTO->arguments = NULL;
 
     while ((token = strtok(NULL, ", ")) != NULL)
     {
         if (IS_ARGUMENT_SET(token))
+            commandDTO->sets[commandDTO->setsCount++] = hashMapFind(setMap, token);
+        else
         {
-            commandDTO->sets = realloc(commandDTO->sets, ++commandDTO->setsCount * sizeof(char*));
+            commandDTO->arguments = realloc(commandDTO->arguments, ++commandDTO->argCount * sizeof(char*));
 
-            if (!commandDTO->sets)
+            if (!commandDTO->arguments)
                 return troubleParsingCommandArguments;
 
-            commandDTO->sets[commandDTO->setsCount-1] = strdup(token);
+            commandDTO->arguments[commandDTO->argCount-1] = strdup(token);
         }
-        commandDTO->arguments = realloc(commandDTO->arguments, ++commandDTO->argCount * sizeof(char*));
-
-        if (!commandDTO->arguments)
-            return troubleParsingCommandArguments;
-
-        commandDTO->arguments[commandDTO->argCount-1] = strdup(token);
     }
 
     return TRUE;
