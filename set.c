@@ -18,6 +18,16 @@
 #define EOL '\0'
 
 
+void resetSet(SetPtr set)
+{
+    unsigned char mask = {0};
+    int i;
+
+    for (i = 0; i < ARRAY_DATA_SIZE; ++i) {
+        set->setData[i] = mask;
+    }
+}
+
 SetPtr initSet()
 {
     SetPtr set = (SetPtr)malloc(sizeof(Set));
@@ -25,12 +35,7 @@ SetPtr initSet()
     if(!set)
         return NULL;
 
-    unsigned char mask = {0};
-    int i;
-
-    for (i = 0; i < ARRAY_DATA_SIZE; ++i) {
-        set->setData[i] = mask;
-    }
+    resetSet(set);
 
     return set;
 }
@@ -51,12 +56,12 @@ char* add_set_number_str(char* pStr, int number)
 }
 
 
-int printSet(SetPtr set, char* setStr)
+int printSet(SetPtr set, char** setStr)
 {
     int byteIndex, bitIndex, countLineElements = 0;
     unsigned char* currByte;
-    setStr = (char* )malloc(sizeof(char) * MAX_SET_STRING_LEN);
-    char* currChar = setStr;
+    *setStr = (char* )malloc(sizeof(char) * MAX_SET_STRING_LEN);
+    char* currChar = *setStr;
 
     *currChar++ = '(';
 
@@ -91,6 +96,13 @@ int readSet(SetPtr set, int* numbers)
 {
     int byteIndex, bitIndex;
 
+    if (numbers[0] == -1)
+    {
+        resetSet(set);
+        return TRUE;
+    }
+
+
     while (*numbers != END_OF_LIST)
     {
         byteIndex = *numbers / BYTE_SIZE;
@@ -109,7 +121,7 @@ int unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 {
     int byteIndex;
 
-    initSet(outputSet);
+    resetSet(outputSet);
 
     for (byteIndex = 0; byteIndex < ARRAY_DATA_SIZE; byteIndex++)
         outputSet->setData[byteIndex] = setA->setData[byteIndex] | setB->setData[byteIndex];
@@ -122,7 +134,7 @@ int intersectSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 {
     int byteIndex;
 
-    initSet(outputSet);
+    resetSet(outputSet);
 
     for (byteIndex = 0; byteIndex < ARRAY_DATA_SIZE; byteIndex++)
         outputSet->setData[byteIndex] = setA->setData[byteIndex] & setB->setData[byteIndex];
@@ -135,7 +147,7 @@ int subSet(SetPtr originalSet, SetPtr subSet, SetPtr outputSet)
 {
     int byteIndex;
 
-    initSet(outputSet);
+    resetSet(outputSet);
 
     for (byteIndex = 0; byteIndex < ARRAY_DATA_SIZE; byteIndex++)
         outputSet->setData[byteIndex] = originalSet->setData[byteIndex] & ~subSet->setData[byteIndex];
@@ -147,7 +159,7 @@ int symDiffSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 {
     Set unionSetResult, intersectSetResult;
 
-    initSet(outputSet);
+    resetSet(outputSet);
 
     unionSet(setA, setB, &unionSetResult);
     intersectSet(setA, setB, &intersectSetResult);
