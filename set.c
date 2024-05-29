@@ -96,12 +96,7 @@ int readSet(SetPtr set, int* numbers)
 {
     int byteIndex, bitIndex;
 
-    if (numbers[0] == -1)
-    {
-        resetSet(set);
-        return TRUE;
-    }
-
+    resetSet(set);
 
     while (*numbers != END_OF_LIST)
     {
