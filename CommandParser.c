@@ -7,7 +7,7 @@
 
 #include "CommandParser.h"
 
-#define IS_ARGUMENT_SET(argument) strstr(argument, "SET") != NULL
+#define IS_ARGUMENT_SET(argument) strstr(argument, "SET") != NULL || strstr(argument, "set") != NULL
 
 
 void initUserCommand(UserCommandPtr commandDTO)
