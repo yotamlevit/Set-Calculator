@@ -2,7 +2,8 @@
 // Created by Yotam Levit on 14/05/2024.
 //
 
-#include "stdlib.h"
+#include <stdlib.h>
+#include <strings.h>
 
 #include "CommandDispatcher.h"
 #include "set.h"
@@ -10,6 +11,7 @@
 #include "CommandParser.h"
 
 #define NUM_OF_COMMANDS 6
+#define EMPTY_SET_MSG "The set is empty"
 
 
 int threeSetDispatcher(FunctionPointer func, UserCommandPtr userCommand)
@@ -27,7 +29,6 @@ int strOutputSetDispatcher(FunctionPointer func, UserCommandPtr userCommand)
 {
     int result;
     char *output = NULL;
-    //ThreeSetFunctionsPointer execFunc = func;
 
     if (userCommand->setsCount != 1)
         return userCommand->setsCount < 1 ? missingParamError : tooManySets;
@@ -37,7 +38,12 @@ int strOutputSetDispatcher(FunctionPointer func, UserCommandPtr userCommand)
 
     result = func.strOutputSetFunction(userCommand->sets[0], &output);
 
-    printf("\n%s\n\n", output);
+    if(strcmp(output, "()") == 0)
+        printf("\n%s\n\n", EMPTY_SET_MSG);
+    else
+        printf("\n%s\n\n", output);
+
+    free(output);
 
     return result;
 }
@@ -125,6 +131,5 @@ int runCommand(HashMapPtr commandMap, UserCommandPtr command)
         return undefinedCommandNameError;
 
     return commandFunction->functionDispatcher(commandFunction->commandFunction, command);
-    //dp(commandFunction->commandFunction, command);
 }
 
