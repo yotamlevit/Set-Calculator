@@ -21,7 +21,10 @@ ErrorPtr getErrors()
             {tooManySets, "Too many sets in command"},
             {extraTextAfterCommand, "Extraneous text after end of command"},
             {troubleInitCommands, "There was a problem initializing a command"},
-            {troubleInitSet, "There was a problem initializing a set"}
+            {troubleInitSet, "There was a problem initializing a set"},
+            {illegalComma, "Illegal comma"},
+            {consecutiveCommas, "Multiple consecutive commas"},
+            {missingComma, "Missing comma"}
     };
 
     return Errors;
