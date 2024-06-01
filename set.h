@@ -8,21 +8,13 @@
 #define BYTE_SIZE 8
 #define END_OF_LIST (-1)
 #define MAX_NUMBER 128
+#define MIN_NUMBER 0
 #define ARRAY_DATA_SIZE 16
 
 #define SINGLE_DIGIT_NUMBERS 10
 #define DOUBLE_DIGIT_NUMBERS MAX_NUMBER - SINGLE_DIGIT_NUMBERS - (MAX_NUMBER - 100) //90
 #define TRIPLE_DIGIT_NUMBER MAX_NUMBER - 99
 
-typedef enum {
-    SETA,
-    SETB,
-    SETC,
-    SETD,
-    SETE,
-    SETF,
-    NumberOfSets
-} Sets;
 
 typedef struct set
 {

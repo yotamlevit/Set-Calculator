@@ -40,7 +40,7 @@ SetPtr initSet()
     return set;
 }
 
-char* add_set_number_str(char* pStr, int number)
+char* addSetNumberStr(char* pStr, int number)
 {
     if(number < 10)
     {
@@ -48,7 +48,7 @@ char* add_set_number_str(char* pStr, int number)
         return pStr;
     }
 
-    pStr = add_set_number_str(pStr, number / 10);
+    pStr = addSetNumberStr(pStr, number / 10);
     *pStr++ = CAST_ASCII_NUMBER(number % 10);
 
     return pStr;
@@ -75,7 +75,7 @@ int printSet(SetPtr set, char** setStr)
                 if(countLineElements % MAX_VALUE_IN_LINE == 0)
                     *(currChar-1) = NEW_LINE;
 
-                currChar = add_set_number_str(currChar, byteIndex * BYTE_SIZE + bitIndex);
+                currChar = addSetNumberStr(currChar, byteIndex * BYTE_SIZE + bitIndex);
                 *currChar++ = ' ';
                 *currChar++ = ',';
             }
