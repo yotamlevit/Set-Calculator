@@ -7,7 +7,7 @@
 
 #include "set.h"
 #include "Errors.h"
-#include "CommandFactory.h"
+#include "CommandDispatcher.h"
 #include "CommandParser.h"
 #include "HashMap.h"
 #include "SetMap.h"
@@ -18,16 +18,6 @@
 #define EXIT_COMMAND "stop"
 
 #define REMOVE_NEW_LINE(str) *strchr(str, '\n') = '\0'
-
-
-void initAllSets(SetPtr sets)
-{
-    int i;
-
-    for (i = 0; i < NumberOfSets; ++i) {
-        initSet(sets+i);
-    }
-}
 
 
 void getUserCommand(char* buffer){
@@ -48,6 +38,14 @@ int checkPreProcessing(HashMapPtr commandMap, HashMapPtr setMap)
     return TRUE;
 }
 
+
+void freeProgramStructures(UserCommandPtr userCommand, HashMapPtr commandMap, HashMapPtr setMap)
+{
+    freeUserCommand(userCommand);
+    hashMapFree(commandMap);
+    hashMapFree(setMap);
+}
+
 int main() {
     UserCommand userCommand;
     char command[MAXLEN];
@@ -56,7 +54,10 @@ int main() {
     int processingResult = checkPreProcessing(commandMap, setMap);
 
 
-    if(checkPreProcessing(commandMap, setMap) != TRUE)
+    initUserCommand(&userCommand);
+
+
+    if(processingResult != TRUE)
     {
         printError(processingResult);
         return 0;
@@ -64,11 +65,6 @@ int main() {
 
     /* Print a welcome message */
     printf(WELCOME_MSG);
-
-    //int arr[128] = {1,2, 3, 4,5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 126, -1}; //{1,2,3,4,5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 126, -1};
-    //int arr2[128] = {1,2,3, 110,125, -1};
-    //readSet(&allSets[SETA], arr);
-    //readSet(&allSets[SETB], arr2);
 
     getUserCommand(command);
 
@@ -88,5 +84,7 @@ int main() {
 
     printf(EXIT_MSG);
 
-    return 0;
+    freeProgramStructures(&userCommand, commandMap, setMap);
+
+    return 1;
 }
