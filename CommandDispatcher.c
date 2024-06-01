@@ -15,6 +15,13 @@
 #define EMPTY_SET_VALUE "()"
 
 
+/**
+ * Dispatches a function that operates on three sets.
+ *
+ * @param func The function to be dispatched.
+ * @param userCommand The user command containing the sets and arguments.
+ * @return Error code indicating the result of the operation.
+ */
 int threeSetDispatcher(FunctionPointer func, UserCommandPtr userCommand)
 {
     if (userCommand->setsCount != 3)
@@ -26,6 +33,14 @@ int threeSetDispatcher(FunctionPointer func, UserCommandPtr userCommand)
     return func.threeSetFunctions(userCommand->sets[0], userCommand->sets[1], userCommand->sets[2]);
 }
 
+
+/**
+ * Dispatches a function that outputs a string representation of a set.
+ *
+ * @param func The function to be dispatched.
+ * @param userCommand The user command containing the sets and arguments.
+ * @return Error code indicating the result of the operation.
+ */
 int strOutputSetDispatcher(FunctionPointer func, UserCommandPtr userCommand)
 {
     int result;
@@ -49,6 +64,14 @@ int strOutputSetDispatcher(FunctionPointer func, UserCommandPtr userCommand)
     return result;
 }
 
+
+/**
+ * Validates the input numbers for set operations.
+ *
+ * @param numbers The array of numbers to be validated.
+ * @param listLength The length of the numbers array.
+ * @return Error code indicating the result of the validation.
+ */
 int validateNumberInput(const int* numbers, int listLength)
 {
     int i;
@@ -64,6 +87,14 @@ int validateNumberInput(const int* numbers, int listLength)
     return TRUE;
 }
 
+
+/**
+ * Dispatches a function that operates on a set and a list of numbers.
+ *
+ * @param func The function to be dispatched.
+ * @param userCommand The user command containing the sets and arguments.
+ * @return Error code indicating the result of the operation.
+ */
 int setAndNumbersDispatcher(FunctionPointer func, UserCommandPtr userCommand)
 {
     int result;
@@ -85,6 +116,12 @@ int setAndNumbersDispatcher(FunctionPointer func, UserCommandPtr userCommand)
     return result;
 }
 
+
+/**
+ * Initializes the command map with predefined commands and their respective functions.
+ *
+ * @return The initialized command map.
+ */
 HashMapPtr initCommandMap() {
     int i;
     char *commandNames[NUM_OF_COMMANDS] = {"read_set", "print_set", "union_set", "intersect_set", "sub_set",
@@ -114,6 +151,13 @@ HashMapPtr initCommandMap() {
 }
 
 
+/**
+ * Executes the user command using the command map.
+ *
+ * @param commandMap The command map containing the command functions.
+ * @param command The user command to be executed.
+ * @return Error code indicating the result of the command execution.
+ */
 int runCommand(HashMapPtr commandMap, UserCommandPtr command)
 {
     CommandMapValuePtr commandFunction = (CommandMapValuePtr)hashMapFind(commandMap, command->command);
