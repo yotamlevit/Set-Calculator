@@ -5,12 +5,10 @@
 #include "HashMap.h"
 
 
-//#define HASH_OFFSET 5
-#define HASH_OFFSET 14695981039346656037UL
 #define HASH_PRIME 1099511628211UL
 
 
-/* Simple hash function for strings *//*
+/* Simple hash function for strings */
 size_t defaultHashFunction(void *key) {
     char *str = (char *)key;
     char* ch;
@@ -18,16 +16,6 @@ size_t defaultHashFunction(void *key) {
     for (ch = str; *ch; ch++) {
         hash ^= (size_t)(unsigned char)(*ch);
         hash *= HASH_PRIME;
-    }
-
-    return hash;
-}*/
-
-size_t defaultHashFunction(void *key) {
-    char *str = (char *)key;
-    size_t hash = 0;
-    while (*str) {
-        hash = (hash << 5) + *str++;
     }
 
     return hash;
@@ -39,7 +27,7 @@ int defaultKeyCompareFunction(void *key1, void *key2) {
     return strcmp((char *)key1, (char *)key2);
 }
 
-// Create a new hash map
+
 HashMapPtr createHashMap(size_t bucketCount, size_t (*hashFunction)(void *), int (*keyCompareFunction)(void *, void *)) {
     HashMapPtr map = (HashMapPtr)malloc(sizeof(HashMap));
     if(!map)
@@ -57,7 +45,7 @@ HashMapPtr createHashMap(size_t bucketCount, size_t (*hashFunction)(void *), int
     return map;
 }
 
-// Insert an element into the hash map
+/* Insert an element into the hash map */
 void hashMapInsert(HashMapPtr map, void *key, void *value) {
     size_t bucket_index = map->hashFunction(key) % map->bucketCount;
     HashMapEntry *entry = map->entries[bucket_index];
@@ -93,7 +81,7 @@ void *hashMapFind(HashMapPtr map, void *key) {
     return NULL;
 }
 
-// Free the hash map
+/* Free the hash map */
 void hashMapFree(HashMapPtr map) {
     for (size_t i = 0; i < map->bucketCount; i++) {
         HashMapEntry *entry = map->entries[i];

@@ -17,7 +17,6 @@ typedef struct HashMapEntry {
 } HashMapEntry,* HashMapEntryPtr;
 
 
-
 typedef struct HashMap {
     HashMapEntryPtr *entries;
     size_t bucketCount;
