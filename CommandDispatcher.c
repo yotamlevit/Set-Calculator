@@ -31,7 +31,7 @@ int strOutputSetDispatcher(FunctionPointer func, UserCommandPtr userCommand)
     char *output = NULL;
 
     if (userCommand->setsCount != 1)
-        return userCommand->setsCount < 1 ? missingParamError : tooManySets;
+        return userCommand->setsCount < 1 ? missingParamError : extraTextAfterCommand;
 
     if (userCommand->argCount > 0)
         return extraTextAfterCommand;
@@ -48,23 +48,25 @@ int strOutputSetDispatcher(FunctionPointer func, UserCommandPtr userCommand)
     return result;
 }
 
-int* convertAToIntList(char** numberList, int listLength)
+int validateNumberInput(const int* numbers, int listLength)
 {
     int i;
-    //int intList[listLength];
-    int* intList = (int*) malloc( listLength * sizeof(int));
 
-    for (i = 0; i < listLength; ++i) {
-        intList[i] = atoi(numberList[i]);
+    if(numbers[listLength-1] != END_OF_LIST)
+        return missingEndOfListError;
+
+    for (i = 0; i < listLength-1; ++i) {
+        if(numbers[i] >= MAX_NUMBER || numbers[i] < 0)
+            return valueError;
     }
 
-    return intList;
+    return TRUE;
 }
 
 int setAndNumbersDispatcher(FunctionPointer func, UserCommandPtr userCommand)
 {
-    int* numbers;
     int result;
+    ErrorCode validationResult;
 
     if(userCommand->setsCount != 1)
         return userCommand->setsCount < 1 ? missingParamError : tooManySets;
@@ -72,14 +74,12 @@ int setAndNumbersDispatcher(FunctionPointer func, UserCommandPtr userCommand)
     if (userCommand->argCount == 0)
         return missingParamError;
 
-    numbers = convertAToIntList(userCommand->arguments, userCommand->argCount);
+    validationResult = validateNumberInput(userCommand->arguments, userCommand->argCount);
 
-    if(numbers[userCommand->argCount-1] != END_OF_LIST)
-        return missingEndOfListError;
+    if(validationResult != TRUE)
+        return validationResult;
 
-    result = func.setAndNumbersFunction(userCommand->sets[0], numbers);
-
-    free(numbers);
+    result = func.setAndNumbersFunction(userCommand->sets[0], userCommand->arguments);
 
     return result;
 }
