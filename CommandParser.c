@@ -6,8 +6,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
-#include <stdlib.h>
-#include <strings.h>
 #include <errno.h>
 
 #include "CommandParser.h"
@@ -56,16 +54,16 @@ void removeWhiteSpaces(char *str) {
 int isStrNumber(const char* str)
 {
     if (*str == NEGATIVE_SIGN) {
-        str++; // Skip the leading '-' sign if present
+        str++; /* Skip the leading '-' sign if present */
     }
 
     if (*str == EOS) {
-        return FALSE; // If the string is empty after skipping '-', return FALSE
+        return FALSE; /* If the string is empty after skipping '-', return FALSE */
     }
 
     while (*str) {
         if (!isdigit(*str)) {
-            return FALSE; // Found a non-digit character
+            return FALSE; /* Found a non-digit character */
         }
         str++;
     }
@@ -94,10 +92,7 @@ int validateDelimiters(char* str, char delimiter)
     char* chBeforeWhiteSpace = str;
 
     while(IS_CH_WHITE_SPACE(*str))
-    {
         str++;
-        printf("Asdasd");
-    }
 
     if (*str++ == delimiter)
         return illegalComma;
@@ -111,6 +106,7 @@ int validateDelimiters(char* str, char delimiter)
             if (*chBeforeWhiteSpace != delimiter && *str != delimiter && (IS_CH_WHITE_SPACE(*(chBeforeWhiteSpace=1)) ||
                     IS_CH_WHITE_SPACE(*(str-1))))
                 return missingComma;
+
             chBeforeWhiteSpace = str;
         }
         str++;

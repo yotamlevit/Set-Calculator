@@ -12,6 +12,7 @@
 
 #define NUM_OF_COMMANDS 6
 #define EMPTY_SET_MSG "The set is empty"
+#define EMPTY_SET_VALUE "()"
 
 
 int threeSetDispatcher(FunctionPointer func, UserCommandPtr userCommand)
@@ -38,7 +39,7 @@ int strOutputSetDispatcher(FunctionPointer func, UserCommandPtr userCommand)
 
     result = func.strOutputSetFunction(userCommand->sets[0], &output);
 
-    if(strcmp(output, "()") == 0)
+    if(strcmp(output, EMPTY_SET_VALUE) == 0)
         printf("\n%s\n\n", EMPTY_SET_MSG);
     else
         printf("\n%s\n\n", output);
@@ -56,7 +57,7 @@ int validateNumberInput(const int* numbers, int listLength)
         return missingEndOfListError;
 
     for (i = 0; i < listLength-1; ++i) {
-        if(numbers[i] >= MAX_NUMBER || numbers[i] < 0)
+        if(numbers[i] >= MAX_NUMBER || numbers[i] < MIN_NUMBER)
             return valueError;
     }
 
@@ -99,16 +100,6 @@ HashMapPtr initCommandMap() {
     *commandsFunctions[3] = (CommandMapValue){{.threeSetFunctions = intersectSet}, threeSetDispatcher};
     *commandsFunctions[4] = (CommandMapValue){{.threeSetFunctions = subSet}, threeSetDispatcher};
     *commandsFunctions[5] = (CommandMapValue){{.threeSetFunctions = symDiffSet}, threeSetDispatcher};
-
-
-/*    CommandMapValue commandsFunctions[NUM_OF_COMMANDS] = {
-            {{.setAndNumbersFunction = readSet}, (Dispatcher) setAndNumbersDispatcher},
-            {{.strOutputSetFunction = printSet}, (Dispatcher) strOutputSetDispatcher},
-            {{.threeSetFunctions = unionSet}, (Dispatcher) threeSetDispatcher},
-            {{.threeSetFunctions = intersectSet}, (Dispatcher) threeSetDispatcher},
-            {{.threeSetFunctions = subSet}, (Dispatcher) threeSetDispatcher},
-            {{.threeSetFunctions = symDiffSet}, (Dispatcher) threeSetDispatcher}
-    };*/
 
     HashMapPtr map = createHashMap(NUM_OF_COMMANDS, NULL, NULL);
 
