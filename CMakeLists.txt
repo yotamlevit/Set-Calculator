@@ -5,8 +5,6 @@ set(CMAKE_C_STANDARD 90)
 
 include_directories(.)
 
-#add_executable(MMN22 myset.c)
-
 add_executable(MMN22
         Errors.c
         Errors.h
