@@ -14,7 +14,7 @@
 typedef struct UserCommand
 {
     char* command;
-    char** arguments;
+    int* arguments;//char** arguments;
     int argCount;
     int setsCount;
     SetPtr sets[MAX_COMMAND_SETS];
