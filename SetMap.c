@@ -5,7 +5,11 @@
 #include "SetMap.h"
 
 
-
+/**
+ * Initializes the set map with predefined sets.
+ *
+ * @return A pointer to the initialized set map, or NULL on failure.
+ */
 HashMapPtr initSetMap() {
     int i;
     char *setNames[NUM_OF_SETS] = {"SETA", "SETB", "SETC", "SETD", "SETE",

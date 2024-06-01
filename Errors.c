@@ -6,6 +6,12 @@
 
 #include "Errors.h"
 
+
+/**
+ * Retrieves the array of predefined error messages.
+ *
+ * @return A pointer to the array of error messages.
+ */
 ErrorPtr getErrors()
 {
     static Error Errors[NumberOfErrors] = {
@@ -30,12 +36,25 @@ ErrorPtr getErrors()
     return Errors;
 }
 
+
+/**
+ * Retrieves the error message associated with a specific error code.
+ *
+ * @param errorCode The error code for which to retrieve the error message.
+ * @return A pointer to the error message corresponding to the given error code.
+ */
 ErrorPtr getError(ErrorCode errorCode)
 {
     ErrorPtr errors = getErrors();
     return &errors[errorCode-2];
 }
 
+
+/**
+ * Prints the error message associated with a specific error code to the standard output.
+ *
+ * @param errorCode The error code for which to print the error message.
+ */
 void printError(ErrorCode errorCode)
 {
     printf("%s\n", getError(errorCode)->error_msg);

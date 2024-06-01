@@ -18,7 +18,8 @@
 
 typedef struct set
 {
-    unsigned char setData[ARRAY_DATA_SIZE];
+    unsigned char setData[ARRAY_DATA_SIZE]; /* 16 byte array that represents the set of numbers [0-127].
+                                            * Each bit represents a number. */
 } Set, * SetPtr;
 
 

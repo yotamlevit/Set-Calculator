@@ -18,6 +18,11 @@
 #define EOL '\0'
 
 
+/**
+ * Resets the set to an empty state.
+ *
+ * @param set The set to reset.
+ */
 void resetSet(SetPtr set)
 {
     unsigned char mask = {0};
@@ -28,6 +33,12 @@ void resetSet(SetPtr set)
     }
 }
 
+
+/**
+ * Initializes a new set and returns a pointer to it.
+ *
+ * @return A pointer to the initialized set, or NULL on failure.
+ */
 SetPtr initSet()
 {
     SetPtr set = (SetPtr)malloc(sizeof(Set));
@@ -40,6 +51,14 @@ SetPtr initSet()
     return set;
 }
 
+
+/**
+ * This function os a recursive function that Adds a number to the set string.
+ *
+ * @param pStr The pointer to the set string.
+ * @param number The number to add.
+ * @return The updated pointer to the set string.
+ */
 char* addSetNumberStr(char* pStr, int number)
 {
     if(number < 10)
@@ -56,6 +75,13 @@ char* addSetNumberStr(char* pStr, int number)
 }
 
 
+/**
+ * Prints the set to a string.
+ *
+ * @param set The set to print.
+ * @param setStr The pointer to the set string.
+ * @return TRUE on success.
+ */
 int printSet(SetPtr set, char** setStr)
 {
     int byteIndex, bitIndex, countLineElements = 0;
@@ -92,6 +118,14 @@ int printSet(SetPtr set, char** setStr)
 }
 
 
+/**
+ * Reads a list of numbers into the set.
+ * THe function adds the numbers to the set using shifting and bitwise operations.
+ *
+ * @param set The set to read into.
+ * @param numbers The list of numbers to read.
+ * @return TRUE on success.
+ */
 int readSet(SetPtr set, int* numbers)
 {
     int byteIndex, bitIndex;
@@ -112,6 +146,15 @@ int readSet(SetPtr set, int* numbers)
 }
 
 
+/**
+ * Performs the union of two sets and stores the result in the output set.
+ * The union is being done using or bitwise operation between the two sets.
+ *
+ * @param setA The first set.
+ * @param setB The second set.
+ * @param outputSet The set to store the result or the union.
+ * @return TRUE on success.
+ */
 int unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 {
     int byteIndex;
@@ -125,6 +168,15 @@ int unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 }
 
 
+/**
+ * Performs the intersection of two sets and stores the result in the output set.
+ * The intersection is being done using AND bitwise operation between the two sets.
+ *
+ * @param setA The first set.
+ * @param setB The second set.
+ * @param outputSet The set to store the intersection result.
+ * @return TRUE on success.
+ */
 int intersectSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 {
     int byteIndex;
@@ -138,6 +190,15 @@ int intersectSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 }
 
 
+/**
+ * Performs the subtraction of one set from another and stores the result in the output set.
+ * The subtraction is being done using AND bitwise operation between the original set and the sub set.
+ *
+ * @param originalSet The original set.
+ * @param subSet The set to subtract.
+ * @param outputSet The set to store the subtraction result.
+ * @return TRUE on success.
+ */
 int subSet(SetPtr originalSet, SetPtr subSet, SetPtr outputSet)
 {
     int byteIndex;
@@ -150,6 +211,15 @@ int subSet(SetPtr originalSet, SetPtr subSet, SetPtr outputSet)
     return TRUE;
 }
 
+
+/**
+ * Performs the symmetric difference of two sets and stores the result in the output set.
+ *
+ * @param setA The first set.
+ * @param setB The second set.
+ * @param outputSet The set to store the difference result.
+ * @return TRUE on success.
+ */
 int symDiffSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 {
     Set unionSetResult, intersectSetResult;

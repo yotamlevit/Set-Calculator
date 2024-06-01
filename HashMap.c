@@ -8,7 +8,12 @@
 #define HASH_PRIME 1099511628211UL
 
 
-/* Simple hash function for strings */
+/**
+ * Default hash function for strings.
+ *
+ * @param key The key to hash.
+ * @return The hash value.
+ */
 size_t defaultHashFunction(void *key) {
     char *str = (char *)key;
     char* ch;
@@ -22,12 +27,26 @@ size_t defaultHashFunction(void *key) {
 }
 
 
-/* Compare function for strings */
+/**
+ * Default key comparison function for strings.
+ *
+ * @param key1 The first key to compare.
+ * @param key2 The second key to compare.
+ * @return 0 if the keys are equal, non-zero otherwise.
+ */
 int defaultKeyCompareFunction(void *key1, void *key2) {
     return strcmp((char *)key1, (char *)key2);
 }
 
 
+/**
+ * Creates a hash map with the specified number of buckets, hash function, and key comparison function.
+ *
+ * @param bucketCount The number of buckets in the hash map.
+ * @param hashFunction The hash function to use (can be NULL for default).
+ * @param keyCompareFunction The key comparison function to use (can be NULL for default).
+ * @return A pointer to the created hash map, or NULL on failure.
+ */
 HashMapPtr createHashMap(size_t bucketCount, size_t (*hashFunction)(void *), int (*keyCompareFunction)(void *, void *)) {
     HashMapPtr map = (HashMapPtr)malloc(sizeof(HashMap));
     if(!map)
@@ -45,7 +64,13 @@ HashMapPtr createHashMap(size_t bucketCount, size_t (*hashFunction)(void *), int
     return map;
 }
 
-/* Insert an element into the hash map */
+/**
+ * Inserts a key-value pair into the hash map.
+ *
+ * @param map The hash map to insert into.
+ * @param key The key to insert.
+ * @param value The value to insert.
+ */
 void hashMapInsert(HashMapPtr map, void *key, void *value) {
     size_t bucket_index = map->hashFunction(key) % map->bucketCount;
     HashMapEntry *entry = map->entries[bucket_index];
@@ -66,7 +91,13 @@ void hashMapInsert(HashMapPtr map, void *key, void *value) {
 }
 
 
-/* Find an element in the hash map */
+/**
+ * Finds a value in the hash map by its key.
+ *
+ * @param map The hash map to search.
+ * @param key The key to search for.
+ * @return The value associated with the key, or NULL if not found.
+ */
 void *hashMapFind(HashMapPtr map, void *key) {
     size_t bucket_index = map->hashFunction(key) % map->bucketCount;
     HashMapEntry *entry = map->entries[bucket_index];
@@ -81,7 +112,11 @@ void *hashMapFind(HashMapPtr map, void *key) {
     return NULL;
 }
 
-/* Free the hash map */
+/**
+ * Frees the memory allocated for the hash map.
+ *
+ * @param map The hash map to free.
+ */
 void hashMapFree(HashMapPtr map) {
     for (size_t i = 0; i < map->bucketCount; i++) {
         HashMapEntry *entry = map->entries[i];

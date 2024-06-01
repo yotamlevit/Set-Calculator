@@ -20,6 +20,11 @@
 #define BASE_10 10
 
 
+/**
+ * Initializes the UserCommand structure.
+ *
+ * @param commandDTO The UserCommand structure to initialize.
+ */
 void initUserCommand(UserCommandPtr commandDTO)
 {
     commandDTO->arguments = NULL;
@@ -28,6 +33,12 @@ void initUserCommand(UserCommandPtr commandDTO)
     commandDTO->setsCount = 0;
 }
 
+
+/**
+ * Resets the UserCommand structure, freeing any allocated memory.
+ *
+ * @param commandDTO The UserCommand structure to reset.
+ */
 void resetUserCommand(UserCommandPtr commandDTO)
 {
     int i;
@@ -41,6 +52,12 @@ void resetUserCommand(UserCommandPtr commandDTO)
 
 }
 
+
+/**
+ * Removes all whitespace characters from a string.
+ *
+ * @param str The string to remove whitespace from.
+ */
 void removeWhiteSpaces(char *str) {
     char* temp = str;
     do {
@@ -50,7 +67,12 @@ void removeWhiteSpaces(char *str) {
     } while (*str++ = *temp++);
 }
 
-
+/**
+ * Checks if a string represents a valid number.
+ *
+ * @param str The string to check.
+ * @return TRUE if the string is a number, otherwise FALSE.
+ */
 int isStrNumber(const char* str)
 {
     if (*str == NEGATIVE_SIGN) {
@@ -71,6 +93,13 @@ int isStrNumber(const char* str)
 }
 
 
+/**
+ * Extracts the command from a string and stores it in the UserCommand structure.
+ *
+ * @param userCommand The UserCommand structure to store the extracted command.
+ * @param command The string containing the command.
+ * @return Error code indicating the result of the extraction.
+ */
 int extractCommand(UserCommandPtr userCommand, char* command)
 {
     char* token;
@@ -87,6 +116,13 @@ int extractCommand(UserCommandPtr userCommand, char* command)
 }
 
 
+/**
+ * Validates the delimiters in a string.
+ *
+ * @param str The string to validate.
+ * @param delimiter The delimiter to validate against.
+ * @return Error code indicating the result of the validation.
+ */
 int validateDelimiters(char* str, char delimiter)
 {
     char* chBeforeWhiteSpace = str;
@@ -118,6 +154,15 @@ int validateDelimiters(char* str, char delimiter)
     return TRUE;
 }
 
+
+/**
+ * Validates the command arguments in a string.
+ *
+ * @param inputCommand The input command string.
+ * @param executeCommand The command to execute.
+ * @param delimiter The delimiter to validate against.
+ * @return Error code indicating the result of the validation.
+ */
 int validateCommandArg(char* inputCommand, char* executeCommand, char delimiter)
 {
     char* commandArgs = inputCommand + strlen(executeCommand) +1;
@@ -127,6 +172,14 @@ int validateCommandArg(char* inputCommand, char* executeCommand, char delimiter)
 }
 
 
+/**
+ * Processes a set argument and stores it in the UserCommand structure.
+ *
+ * @param token The set argument to process.
+ * @param userCommand The UserCommand structure to store the processed argument.
+ * @param setMap The map of available sets.
+ * @return Error code indicating the result of the processing.
+ */
 int processSetArg(char* token, UserCommandPtr userCommand, HashMapPtr setMap)
 {
     SetPtr set;
@@ -141,6 +194,14 @@ int processSetArg(char* token, UserCommandPtr userCommand, HashMapPtr setMap)
     return processResult;
 }
 
+
+/**
+ * Processes a numeral argument and stores it in the UserCommand structure.
+ *
+ * @param token The numeral argument to process.
+ * @param userCommand The UserCommand structure to store the processed argument.
+ * @return Error code indicating the result of the processing.
+ */
 int processNumeralArg(char* token, UserCommandPtr userCommand)
 {
     int processResult = TRUE;
@@ -166,6 +227,14 @@ int processNumeralArg(char* token, UserCommandPtr userCommand)
 }
 
 
+/**
+ * Processes the command arguments and stores them in the UserCommand structure.
+ *
+ * @param token The command argument to process.
+ * @param userCommand The UserCommand structure to store the processed arguments.
+ * @param setMap The map of available sets.
+ * @return Error code indicating the result of the processing.
+ */
 int processCommandArgs(char* token, UserCommandPtr userCommand, HashMapPtr setMap)
 {
     int processResult;
@@ -177,6 +246,15 @@ int processCommandArgs(char* token, UserCommandPtr userCommand, HashMapPtr setMa
     return processResult;
 }
 
+
+/**
+ * Parses the user command and stores the result in the UserCommand structure.
+ *
+ * @param userCommand The UserCommand structure to store the parsed command.
+ * @param command The string containing the command.
+ * @param setMap The map of available sets.
+ * @return Error code indicating the result of the parsing.
+ */
 int parseUserCommand(UserCommandPtr userCommand, char* command, HashMapPtr setMap)
 {
     char* token;
@@ -198,6 +276,11 @@ int parseUserCommand(UserCommandPtr userCommand, char* command, HashMapPtr setMa
 }
 
 
+/**
+ * Frees the memory allocated for the UserCommand structure.
+ *
+ * @param cmd The UserCommand structure to free.
+ */
 void freeUserCommand(UserCommandPtr cmd) {
     if (cmd) {
         free(cmd->command);

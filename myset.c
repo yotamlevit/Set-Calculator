@@ -20,6 +20,11 @@
 #define REMOVE_NEW_LINE(str) *strchr(str, '\n') = '\0'
 
 
+/**
+ * Prompts the user to enter a command and stores it in the provided buffer.
+ *
+ * @param buffer The buffer to store the user command.
+ */
 void getUserCommand(char* buffer){
     printf("Enter Command: ");
     fgets(buffer, MAXLEN, stdin);
@@ -27,6 +32,13 @@ void getUserCommand(char* buffer){
 }
 
 
+/**
+ * Checks the initialization of command and set maps.
+ *
+ * @param commandMap The command map to check.
+ * @param setMap The set map to check.
+ * @return Error code indicating the result of the check.
+ */
 int checkPreProcessing(HashMapPtr commandMap, HashMapPtr setMap)
 {
     if(!commandMap)
@@ -39,6 +51,13 @@ int checkPreProcessing(HashMapPtr commandMap, HashMapPtr setMap)
 }
 
 
+/**
+ * Frees the memory allocated for program structures.
+ *
+ * @param userCommand The UserCommand structure to free.
+ * @param commandMap The command map to free.
+ * @param setMap The set map to free.
+ */
 void freeProgramStructures(UserCommandPtr userCommand, HashMapPtr commandMap, HashMapPtr setMap)
 {
     freeUserCommand(userCommand);
@@ -46,6 +65,13 @@ void freeProgramStructures(UserCommandPtr userCommand, HashMapPtr commandMap, Ha
     hashMapFree(setMap);
 }
 
+
+/**
+ * The main function of the program.
+ * The function is responsible for initializing the program and running the main loop.
+ *
+ * @return Exit status of the program.
+ */
 int main() {
     UserCommand userCommand;
     char command[MAXLEN];
