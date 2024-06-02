@@ -9,6 +9,7 @@
 #include <errno.h>
 
 #include "CommandParser.h"
+#include "HashMap.h"
 
 #define IS_ARGUMENT_SET(argument) strstr(argument, "SET") != NULL || strstr(argument, "set") != NULL
 #define IS_CH_WHITE_SPACE(ch) *str == *SPACE || *str == TAB
