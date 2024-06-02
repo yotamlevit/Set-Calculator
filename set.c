@@ -181,7 +181,6 @@ int unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 int intersectSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 {
     int byteIndex;
-    char tempByte;
 
     if(outputSet != setA && outputSet != setB)
         resetSet(outputSet);
