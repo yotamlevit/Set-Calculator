@@ -28,6 +28,7 @@
 void getUserCommand(char* buffer){
     printf("Enter Command: ");
     fgets(buffer, MAXLEN, stdin);
+    REMOVE_NEW_LINE(buffer);
 }
 
 
@@ -98,6 +99,7 @@ int main() {
     while(strcmp(command, EXIT_COMMAND) != 0) {
 
         printf("23423423423423");
+        printf("Received Command: %s\n", command);
         printf("asdasdasdasdasdasdasd");
         processingResult = parseUserCommand(userCommand, command, setMap);
 
