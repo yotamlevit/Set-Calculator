@@ -118,7 +118,8 @@ void *hashMapFind(HashMapPtr map, void *key) {
  * @param map The hash map to free.
  */
 void hashMapFree(HashMapPtr map) {
-    for (size_t i = 0; i < map->bucketCount; i++) {
+    size_t i;
+    for ( i = 0; i < map->bucketCount; i++) {
         HashMapEntry *entry = map->entries[i];
         while (entry != NULL) {
             HashMapEntry *next = entry->next;
