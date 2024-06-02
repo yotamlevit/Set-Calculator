@@ -1,6 +1,6 @@
-//
-// Created by Yotam Levit on 16/05/2024.
-//
+/*
+* Created by Yotam Levit on 16/05/2024.
+*/
 
 #include <strings.h>
 #include <stdlib.h>
