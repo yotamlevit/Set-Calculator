@@ -159,7 +159,8 @@ int unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 {
     int byteIndex;
 
-    resetSet(outputSet);
+    if(outputSet != setA && outputSet != setB)
+        resetSet(outputSet);
 
     for (byteIndex = 0; byteIndex < ARRAY_DATA_SIZE; byteIndex++)
         outputSet->setData[byteIndex] = setA->setData[byteIndex] | setB->setData[byteIndex];
@@ -180,8 +181,10 @@ int unionSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 int intersectSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 {
     int byteIndex;
+    char tempByte;
 
-    resetSet(outputSet);
+    if(outputSet != setA && outputSet != setB)
+        resetSet(outputSet);
 
     for (byteIndex = 0; byteIndex < ARRAY_DATA_SIZE; byteIndex++)
         outputSet->setData[byteIndex] = setA->setData[byteIndex] & setB->setData[byteIndex];
@@ -203,7 +206,8 @@ int subSet(SetPtr originalSet, SetPtr subSet, SetPtr outputSet)
 {
     int byteIndex;
 
-    resetSet(outputSet);
+    if(outputSet != originalSet && outputSet != subSet)
+        resetSet(outputSet);
 
     for (byteIndex = 0; byteIndex < ARRAY_DATA_SIZE; byteIndex++)
         outputSet->setData[byteIndex] = originalSet->setData[byteIndex] & ~subSet->setData[byteIndex];
@@ -224,7 +228,8 @@ int symDiffSet(SetPtr setA, SetPtr setB, SetPtr outputSet)
 {
     Set unionSetResult, intersectSetResult;
 
-    resetSet(outputSet);
+    if(outputSet != setA && outputSet != setB)
+        resetSet(outputSet);
 
     unionSet(setA, setB, &unionSetResult);
     intersectSet(setA, setB, &intersectSetResult);
