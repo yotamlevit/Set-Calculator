@@ -221,11 +221,7 @@ int processNumeralArg(char* token, UserCommandPtr userCommand)
     if (!isStrNumber(token))
         processResult = typeError;
 
-    printf("23423423423423");
-    printf("asdasdasdasdasdasdasd\n");
-    printf("asdasdasdasdasdasdasd\n");
-    printf("asdasdasdasdasdasdasd\n");
-    inputNum = strtol(token, endptr, BASE_10);
+    inputNum = atoi(token);
 
     printf("23423423423423");
     printf("788888888888888888\n");
