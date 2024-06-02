@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -pedantic -std=c90
 LDFLAGS = -lm
-SRC = set.c Errors.c myset.c
+SRC = CommandDispatcher.c CommandParser.c HashMap.c SetMap.c set.c Errors.c myset.c
 OBJ = $(SRC:.c=.o)
 EXEC = myset
 
