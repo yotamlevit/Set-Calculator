@@ -99,8 +99,13 @@ int main() {
     while(strcmp(command, EXIT_COMMAND) != 0) {
 
         printf("23423423423423");
+        printf("asdasdasdasdasdasdasd\n");
+        printf("asdasdasdasdasdasdasd\n");
+        printf("asdasdasdasdasdasdasd\n");
         printf("Received Command: %s\n", command);
-        printf("asdasdasdasdasdasdasd");
+        printf("asdasdasdasdasdasdasd\n");
+        printf("asdasdasdasdasdasdasd\n");
+        printf("asdasdasdasdasdasdasd\n");
         processingResult = parseUserCommand(userCommand, command, setMap);
 
         if (processingResult == TRUE) {
