@@ -213,16 +213,7 @@ int processNumeralArg(char* token, UserCommandPtr userCommand)
     int processResult = TRUE;
     char* endptr;
     long int inputNum;
-    printf("23423423423423");
-    printf("788888888888888888\n");
-    printf("788888888888888888\n");
-    printf("788888888888888888\n");
     userCommand->arguments = (int*)realloc(userCommand->arguments, ++userCommand->argCount * sizeof(int));
-
-    printf("23423423423423");
-    printf("asdasdasdasdasdasdasd\n");
-    printf("asdasdasdasdasdasdasd\n");
-    printf("asdasdasdasdasdasdasd\n");
 
     if (!userCommand->arguments)
         processResult = troubleParsingCommandArguments;
@@ -230,7 +221,16 @@ int processNumeralArg(char* token, UserCommandPtr userCommand)
     if (!isStrNumber(token))
         processResult = typeError;
 
+    printf("23423423423423");
+    printf("asdasdasdasdasdasdasd\n");
+    printf("asdasdasdasdasdasdasd\n");
+    printf("asdasdasdasdasdasdasd\n");
     inputNum = strtol(token, endptr, BASE_10);
+
+    printf("23423423423423");
+    printf("788888888888888888\n");
+    printf("788888888888888888\n");
+    printf("788888888888888888\n");
 
     if (errno == ERANGE)
         return valueError;
