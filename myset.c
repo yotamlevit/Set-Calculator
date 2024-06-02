@@ -14,7 +14,7 @@
 
 #define WELCOME_MSG "Hi, Welcome to MMN22 by Yotam Levit\n---------------------------------\n\n"
 #define EXIT_MSG "\nThank you for using MMN22\nBye...\n"
-#define MAXLEN 1200 /* Define maximum length for commands and inputs */
+#define MAXLEN 128 /* Define maximum length for commands and inputs */
 #define EXIT_COMMAND "stop"
 
 #define REMOVE_NEW_LINE(str) *strchr(str, '\n') = '\0'

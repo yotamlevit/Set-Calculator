@@ -22,7 +22,7 @@ typedef struct UserCommand
 
 
 UserCommandPtr initUserCommand();
-int parseUserCommand(UserCommandPtr commandDTO, char** command, HashMapPtr setMap);
+int parseUserCommand(UserCommandPtr commandDTO, char* command, HashMapPtr setMap);
 void resetUserCommand(UserCommandPtr commandDTO);
 
 void freeUserCommand(UserCommandPtr cmd);
