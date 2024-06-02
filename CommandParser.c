@@ -265,7 +265,9 @@ int parseUserCommand(UserCommandPtr userCommand, char* command, HashMapPtr setMa
 {
     char* token;
     int processResult;
-    printf(";;;;;;;;;;;;;");
+    printf("asdasdasdasdasdasdasd");
+
+
     resetUserCommand(userCommand);
 
     processResult = extractCommand(userCommand, command);
