@@ -99,8 +99,8 @@ int main() {
     while(strcmp(command, EXIT_COMMAND) != 0) {
 
         printf("Received Command: %s\n", command);
-
-        processingResult = parseUserCommand(userCommand, command, setMap);
+        printf("asdasdasdasdasdasdasd");
+        processingResult = parseUserCommand(userCommand, &command, setMap);
 
         if (processingResult == TRUE) {
             processingResult = runCommand(commandMap, userCommand);

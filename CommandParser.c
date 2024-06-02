@@ -106,13 +106,13 @@ int isStrNumber(const char* str)
  * @param command The string containing the command.
  * @return Error code indicating the result of the extraction.
  */
-int extractCommand(UserCommandPtr userCommand, char* command)
+int extractCommand(UserCommandPtr userCommand, char** command)
 {
     char* token;
-    if(command == NULL || strlen(command) == 0)
+    if(command == NULL || strlen(*command) == 0)
         return missingCommand;
 
-    token = strtok(command, SPACE);
+    token = strtok(*command, SPACE);
     userCommand->command = strdup(token);
 
     if (strchr(userCommand->command, *DELIMITER) != NULL)
@@ -169,9 +169,9 @@ int validateDelimiters(char* str, char delimiter)
  * @param delimiter The delimiter to validate against.
  * @return Error code indicating the result of the validation.
  */
-int validateCommandArg(char* inputCommand, char* executeCommand, char delimiter)
+int validateCommandArg(char** inputCommand, char* executeCommand, char delimiter)
 {
-    char* commandArgs = inputCommand + strlen(executeCommand) +1;
+    char* commandArgs = *inputCommand + strlen(executeCommand) +1;
     int validationResult = validateDelimiters(commandArgs, delimiter);
     removeWhiteSpaces(commandArgs);
     return validationResult;
@@ -261,11 +261,11 @@ int processCommandArgs(char* token, UserCommandPtr userCommand, HashMapPtr setMa
  * @param setMap The map of available sets.
  * @return Error code indicating the result of the parsing.
  */
-int parseUserCommand(UserCommandPtr userCommand, char* command, HashMapPtr setMap)
+int parseUserCommand(UserCommandPtr userCommand, char** command, HashMapPtr setMap)
 {
     char* token;
     int processResult;
-    printf("asdasdasdasdasdasdasd");
+
 
 
     resetUserCommand(userCommand);
