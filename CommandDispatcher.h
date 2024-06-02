@@ -38,4 +38,4 @@ int runCommand(HashMapPtr commandMap, UserCommandPtr command);
 
 
 
-#endif //MMN22_COMMANDDISPATCHER_H
+#endif /* MMN22_COMMANDDISPATCHER_H */

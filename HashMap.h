@@ -34,4 +34,4 @@ void *hashMapFind(HashMapPtr map, void *key);
 void hashMapFree(HashMapPtr map);
 
 
-#endif //MMN22_HASHMAP_H
+#endif /* MMN22_HASHMAP_H */

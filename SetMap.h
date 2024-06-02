@@ -14,4 +14,4 @@
 HashMapPtr initSetMap();
 
 
-#endif //MMN22_SETMAP_H
+#endif /* MMN22_SETMAP_H */

@@ -27,4 +27,4 @@ void resetUserCommand(UserCommandPtr commandDTO);
 
 void freeUserCommand(UserCommandPtr cmd);
 
-#endif //MMN22_USERCOMMANDDTO_H
+#endif /* MMN22_USERCOMMANDDTO_H */
