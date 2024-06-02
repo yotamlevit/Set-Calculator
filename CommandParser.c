@@ -269,12 +269,12 @@ int parseUserCommand(UserCommandPtr userCommand, char* command, HashMapPtr setMa
 
     resetUserCommand(userCommand);
 
+    processResult = extractCommand(userCommand, command);
+
     printf("23423423423423");
     printf("asdasdasdasdasdasdasd\n");
     printf("asdasdasdasdasdasdasd\n");
     printf("asdasdasdasdasdasdasd\n");
-
-    processResult = extractCommand(userCommand, command);
 
     if (processResult == TRUE)
         processResult = validateCommandArg(command, userCommand->command, *DELIMITER);
