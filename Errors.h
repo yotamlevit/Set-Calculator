@@ -24,6 +24,7 @@ typedef enum {
     extraTextAfterCommand,
     troubleInitCommands,
     troubleInitSet,
+    troubleInitUserBuffer,
     illegalComma,
     consecutiveCommas,
     missingComma,

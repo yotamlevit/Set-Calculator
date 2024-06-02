@@ -28,6 +28,7 @@ ErrorPtr getErrors()
             {extraTextAfterCommand, "Extraneous text after end of command"},
             {troubleInitCommands, "There was a problem initializing a command"},
             {troubleInitSet, "There was a problem initializing a set"},
+            {troubleInitUserBuffer, "There was a problem initializing a user buffer"},
             {illegalComma, "Illegal comma"},
             {consecutiveCommas, "Multiple consecutive commas"},
             {missingComma, "Missing comma"}
