@@ -190,7 +190,10 @@ int processSetArg(char* token, UserCommandPtr userCommand, HashMapPtr setMap)
 {
     SetPtr set;
     int processResult = TRUE;
-
+    printf("23423423423423");
+    printf("asdasdasdasdasdasdasd\n");
+    printf("asdasdasdasdasdasdasd\n");
+    printf("asdasdasdasdasdasdasd\n");
     set = hashMapFind(setMap, token);
     if(set)
         userCommand->sets[userCommand->setsCount++] = set;
@@ -213,7 +216,10 @@ int processNumeralArg(char* token, UserCommandPtr userCommand)
     int processResult = TRUE;
     char* endptr;
     long int inputNum;
-
+    printf("23423423423423");
+    printf("788888888888888888\n");
+    printf("788888888888888888\n");
+    printf("788888888888888888\n");
     userCommand->arguments = (int*)realloc(userCommand->arguments, ++userCommand->argCount * sizeof(int));
 
     if (!userCommand->arguments)
@@ -276,10 +282,6 @@ int parseUserCommand(UserCommandPtr userCommand, char* command, HashMapPtr setMa
 
     while ((token = strtok(NULL, DELIMITER)) != NULL && processResult == TRUE)
     {
-        printf("23423423423423");
-        printf("asdasdasdasdasdasdasd\n");
-        printf("asdasdasdasdasdasdasd\n");
-        printf("asdasdasdasdasdasdasd\n");
         processResult = processCommandArgs(token, userCommand, setMap);
     }
 
