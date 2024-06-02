@@ -78,9 +78,11 @@ void freeProgramStructures(UserCommandPtr userCommand, HashMapPtr commandMap, Ha
  */
 int main() {
     char command[MAXLEN];
-    UserCommandPtr userCommand = initUserCommand();
+    UserCommandPtr userCommand;
     HashMapPtr commandMap = initCommandMap();
     HashMapPtr setMap = initSetMap();
+
+    userCommand = initUserCommand();
     int processingResult = checkPreProcessing(userCommand, commandMap, setMap);
 
     if(processingResult != TRUE)
