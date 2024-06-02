@@ -271,11 +271,6 @@ int parseUserCommand(UserCommandPtr userCommand, char* command, HashMapPtr setMa
 
     processResult = extractCommand(userCommand, command);
 
-    printf("23423423423423");
-    printf("asdasdasdasdasdasdasd\n");
-    printf("asdasdasdasdasdasdasd\n");
-    printf("asdasdasdasdasdasdasd\n");
-
     if (processResult == TRUE)
         processResult = validateCommandArg(command, userCommand->command, *DELIMITER);
 
@@ -284,6 +279,10 @@ int parseUserCommand(UserCommandPtr userCommand, char* command, HashMapPtr setMa
         processResult = processCommandArgs(token, userCommand, setMap);
     }
 
+    printf("23423423423423");
+    printf("asdasdasdasdasdasdasd\n");
+    printf("asdasdasdasdasdasdasd\n");
+    printf("asdasdasdasdasdasdasd\n");
     return processResult;
 }
 
