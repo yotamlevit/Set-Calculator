@@ -23,14 +23,18 @@
 /**
  * Initializes the UserCommand structure.
  *
- * @param commandDTO The UserCommand structure to initialize.
+ * @return command The initialized UserCommand structure .
  */
-void initUserCommand(UserCommandPtr commandDTO)
+UserCommandPtr initUserCommand()
 {
-    commandDTO->arguments = NULL;
-    commandDTO->argCount = 0;
-    commandDTO->command = NULL;
-    commandDTO->setsCount = 0;
+    UserCommandPtr command = (UserCommandPtr)malloc(sizeof(UserCommand));
+    if (command) {
+        command->arguments = NULL;
+        command->argCount = 0;
+        command->command = NULL;
+        command->setsCount = 0;
+    }
+    return command;
 }
 
 
@@ -41,8 +45,10 @@ void initUserCommand(UserCommandPtr commandDTO)
  */
 void resetUserCommand(UserCommandPtr commandDTO)
 {
-    int i;
-    free(commandDTO->command);
+    if (commandDTO->command != "") {
+        free(commandDTO->command);
+        commandDTO->command = NULL;
+    }
     commandDTO->setsCount = 0;
     if (commandDTO->arguments) {
         free(commandDTO->arguments);

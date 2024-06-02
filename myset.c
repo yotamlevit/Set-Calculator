@@ -35,17 +35,21 @@ void getUserCommand(char* buffer){
 /**
  * Checks the initialization of command and set maps.
  *
+ * @param userCommand The user command buffer to check.
  * @param commandMap The command map to check.
  * @param setMap The set map to check.
  * @return Error code indicating the result of the check.
  */
-int checkPreProcessing(HashMapPtr commandMap, HashMapPtr setMap)
+int checkPreProcessing(UserCommandPtr userCommand, HashMapPtr commandMap, HashMapPtr setMap)
 {
     if(!commandMap)
-        return troubleInitSet;
+        return troubleInitCommands;
 
     if(!setMap)
         return troubleInitSet;
+
+    if(!userCommand)
+        return troubleInitUserBuffer;
 
     return TRUE;
 }
@@ -73,15 +77,11 @@ void freeProgramStructures(UserCommandPtr userCommand, HashMapPtr commandMap, Ha
  * @return Exit status of the program.
  */
 int main() {
-    UserCommand userCommand;
     char command[MAXLEN];
+    UserCommandPtr userCommand = initUserCommand();
     HashMapPtr commandMap = initCommandMap();
     HashMapPtr setMap = initSetMap();
-    int processingResult = checkPreProcessing(commandMap, setMap);
-
-
-    initUserCommand(&userCommand);
-
+    int processingResult = checkPreProcessing(userCommand, commandMap, setMap);
 
     if(processingResult != TRUE)
     {
@@ -96,10 +96,12 @@ int main() {
 
     while(strcmp(command, EXIT_COMMAND) != 0) {
 
-        processingResult = parseUserCommand(&userCommand, command, setMap);
+        printf("Received Command: %s\n", command);
+
+        processingResult = parseUserCommand(userCommand, command, setMap);
 
         if (processingResult == TRUE) {
-            processingResult = runCommand(commandMap, &userCommand);
+            processingResult = runCommand(commandMap, userCommand);
         }
 
         if (processingResult != TRUE)
@@ -110,7 +112,7 @@ int main() {
 
     printf(EXIT_MSG);
 
-    freeProgramStructures(&userCommand, commandMap, setMap);
+    freeProgramStructures(userCommand, commandMap, setMap);
 
     return 1;
 }

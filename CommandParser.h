@@ -21,7 +21,7 @@ typedef struct UserCommand
 } UserCommand, * UserCommandPtr;
 
 
-void initUserCommand(UserCommandPtr commandDTO);
+UserCommandPtr initUserCommand();
 int parseUserCommand(UserCommandPtr commandDTO, char* command, HashMapPtr setMap);
 void resetUserCommand(UserCommandPtr commandDTO);
 
