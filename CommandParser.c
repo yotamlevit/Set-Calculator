@@ -267,11 +267,12 @@ int parseUserCommand(UserCommandPtr userCommand, char* command, HashMapPtr setMa
     int processResult;
 
 
+    resetUserCommand(userCommand);
+
     printf("23423423423423");
     printf("asdasdasdasdasdasdasd\n");
     printf("asdasdasdasdasdasdasd\n");
     printf("asdasdasdasdasdasdasd\n");
-    resetUserCommand(userCommand);
 
     processResult = extractCommand(userCommand, command);
 
