@@ -101,7 +101,7 @@ int main() {
         printf("Received Command: %s\n", command);
 
         processingResult = parseUserCommand(userCommand, command, setMap);
-        printf("asdasdasdasda");
+
         if (processingResult == TRUE) {
             processingResult = runCommand(commandMap, userCommand);
         }
