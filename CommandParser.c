@@ -211,7 +211,6 @@ int processSetArg(char* token, UserCommandPtr userCommand, HashMapPtr setMap)
 int processNumeralArg(char* token, UserCommandPtr userCommand)
 {
     int processResult = TRUE;
-    char* endptr;
     long int inputNum;
     userCommand->arguments = (int*)realloc(userCommand->arguments, ++userCommand->argCount * sizeof(int));
 
@@ -222,11 +221,6 @@ int processNumeralArg(char* token, UserCommandPtr userCommand)
         processResult = typeError;
 
     inputNum = atoi(token);
-
-    printf("23423423423423");
-    printf("788888888888888888\n");
-    printf("788888888888888888\n");
-    printf("788888888888888888\n");
 
     if (errno == ERANGE)
         return valueError;
