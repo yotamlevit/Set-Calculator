@@ -5,7 +5,7 @@
 #include "HashMap.h"
 
 
-#define HASH_PRIME 1099511628211UL
+#define HASH_PRIME 109951
 
 
 /**
