@@ -28,7 +28,6 @@
 void getUserCommand(char* buffer){
     printf("Enter Command: ");
     fgets(buffer, MAXLEN, stdin);
-    REMOVE_NEW_LINE(buffer);
 }
 
 
