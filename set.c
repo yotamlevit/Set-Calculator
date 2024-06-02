@@ -130,7 +130,7 @@ int printSet(SetPtr set, char** setStr)
 int readSet(SetPtr set, int* numbers)
 {
     int byteIndex, bitIndex;
-
+    printf("asdasdasdasdasdasd");
     resetSet(set);
 
     while (*numbers != END_OF_LIST)
