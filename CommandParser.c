@@ -113,7 +113,7 @@ int extractCommand(UserCommandPtr userCommand, char* command)
         return missingCommand;
 
     token = strtok(command, SPACE);
-    userCommand->command = (char*)strdup(token);
+    userCommand->command = strdup(token);
 
     if (strchr(userCommand->command, *DELIMITER) != NULL)
         return illegalComma;
