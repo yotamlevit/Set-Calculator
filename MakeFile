@@ -1,4 +1,4 @@
-CC = gcc
+CC=i386-elf-gcc
 CFLAGS = -Wall -pedantic -std=c90
 LDFLAGS = -lm
 SRC = CommandDispatcher.c CommandParser.c HashMap.c SetMap.c set.c Errors.c myset.c

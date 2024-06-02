@@ -86,8 +86,9 @@ int printSet(SetPtr set, char** setStr)
 {
     int byteIndex, bitIndex, countLineElements = 0;
     unsigned char* currByte;
+    char* currChar;
     *setStr = (char* )malloc(sizeof(char) * MAX_SET_STRING_LEN);
-    char* currChar = *setStr;
+    currChar = *setStr;
 
     *currChar++ = '(';
 
